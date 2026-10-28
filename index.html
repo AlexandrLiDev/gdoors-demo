@@ -42,7 +42,7 @@ header.top .wrap{display:flex;align-items:center;gap:18px;height:68px}
 .logo .gd{width:42px;height:42px;border:1.5px solid var(--gold);display:grid;place-items:center;font-family:"Playfair Display";font-weight:700;font-size:19px;color:var(--gold);letter-spacing:-.04em}
 .logo .nm{line-height:1.05}
 .logo .nm b{display:block;font-family:"Playfair Display";font-size:19px;color:var(--gold);font-weight:700}
-.logo .nm small{font-size:9.5px;letter-spacing:.22em;color:#d7d2c7;font-weight:600}
+.logo .nm small{white-space:nowrap;font-size:9.5px;letter-spacing:.22em;color:#d7d2c7;font-weight:600}
 .status{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);white-space:nowrap;color:#e9e5dc}
 .dot{width:8px;height:8px;border-radius:50%;background:#3DBA74;box-shadow:0 0 0 4px rgba(61,186,116,.18)}
 .dot.closed{background:#E0614C;box-shadow:0 0 0 4px rgba(224,97,76,.18)}
@@ -206,7 +206,7 @@ footer a{color:#fff}
 .plist b{white-space:nowrap}
 .mbar{display:none}
 
-@media (max-width:1240px){nav.links{gap:14px;font-size:14px}.st-long{display:none}header.top .wrap{gap:14px}}
+@media (max-width:1240px){nav.links{gap:14px;font-size:14px}nav.links a[href="#works"]{display:none}.st-long{display:none}header.top .wrap{gap:14px}}
 @media (max-width:1000px){
   .hero-grid{grid-template-columns:1fr;min-height:0}
   .hero-txt{padding:40px 0 34px}
