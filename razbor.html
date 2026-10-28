@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Разбор карточек «G.doors»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--graphite:#1C1D20;--gold:#C9A45C;--gold-d:#A9873F;--gold-l:#F3EAD7;--paper:#F4F2EE;--card:#fff;--muted:#6E6A63;--line:#E2DED6;--ok:#2E8A57;--warn:#B07A12;--bad:#B9412E}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--paper);color:var(--graphite);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;line-height:1.12}
+a{color:inherit}
+.top{background:#0F1012;color:#cfcac0;font-size:13px;padding:9px 0}
+.top a{color:var(--gold);font-weight:700}
+header.hero{background:var(--graphite);color:#fff;padding:52px 0 40px}
+.kicker{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+header h1{font-size:clamp(30px,5vw,48px);margin:14px 0 16px}
+header h1 i{color:var(--gold)}
+header p{font-size:18px;color:#d7d2c7;max-width:62ch}
+.score{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+.sc{background:#26272B;border:1px solid #38393e;border-radius:16px;padding:18px}
+.sc b{display:block;font-family:"Playfair Display";font-size:32px;margin:4px 0}
+.sc small{color:#b3ada2}
+.sc.bad b{color:#F0806B}.sc.ok b{color:#7FD3A2}
+.compare{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:30px 0}
+.compare table{width:100%;border-collapse:collapse;font-size:15px}
+.compare th,.compare td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.compare th{background:#FAF8F4;font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.compare tr:last-child td{border-bottom:0}
+.y{color:var(--ok);font-weight:700}.n{color:var(--bad);font-weight:700}
+h2{font-size:30px;margin:46px 0 16px}
+.find{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:12px;display:grid;grid-template-columns:auto 1fr;gap:8px 16px}
+.find>*:not(.num){grid-column:2;min-width:0}
+.num{grid-column:1;grid-row:1/span 9;width:40px;height:40px;border-radius:10px;background:var(--graphite);color:var(--gold);display:grid;place-items:center;font-family:"Playfair Display";font-size:18px;font-weight:700}
+.find h3{font-family:Manrope;font-weight:800;font-size:18px;line-height:1.3;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px}
+.tag.hi{background:#FBE6E1;color:var(--bad)}.tag.mid{background:#FBF0D9;color:var(--warn)}.tag.lo{background:#ECEEEA;color:#55605a}
+.find p{color:#3d3a35}
+.fix{background:#F0F8F3;border-radius:10px;padding:10px 12px;font-size:15px}
+.fix b{color:var(--ok)}
+.shot{display:block;margin-top:4px;border-radius:12px;border:1px solid var(--line);width:100%;max-width:340px;height:auto}
+.offer{background:var(--graphite);color:#fff;border-radius:22px;padding:30px;margin:46px 0 20px}
+.offer h2{margin:0 0 12px;color:#fff}
+.offer p{color:#d7d2c7}
+.offer ul{list-style:none;display:grid;gap:9px;margin:16px 0 20px}
+.offer li{padding-left:26px;position:relative}
+.offer li:before{content:"";position:absolute;left:0;top:7px;width:14px;height:14px;border-radius:4px;background:var(--gold)}
+.offer a.inl{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 18px;border-radius:10px;font-weight:700;text-decoration:none;background:var(--gold);color:var(--graphite)}
+.btn.o{background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+footer{padding:20px 0 50px;color:var(--muted);font-size:14px}
+@media (max-width:640px){.wrap{padding:0 16px}.score{grid-template-columns:1fr}.find{grid-template-columns:1fr}.find>*:not(.num){grid-column:1}.num{grid-row:auto}.compare{overflow-x:auto}.compare table{min-width:540px}.offer{padding:22px 18px}header.hero{padding:36px 0 30px}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap">Разбор подготовил Александр Ли для салона «G.doors», 28 октября 2026 · <a href="index.html">Концепт сайта →</a></div></div>
+
+<header class="hero"><div class="wrap">
+  <span class="kicker">«G.doors» · Героев-Разведчиков, 52/1</span>
+  <h1>Покупатели хвалят Романа, <i>а карточки молчат с 2022 года</i></h1>
+  <p>Посмотрел, как салон выглядит в 2ГИС и Яндекс Картах. Двери покупают не спеша: человек сравнивает 3–4 салона по карточкам, читает отзывы и смотрит цены. У вас отличные отзывы, но карточки заброшены, а в Яндексе рейтинг ниже, чем мог бы быть. Почти всё ниже исправляется за неделю и бесплатно.</p>
+  <div class="score">
+    <div class="sc ok"><small>Рейтинг в 2ГИС</small><b>5,0</b><small>46 оценок, 38 отзывов</small></div>
+    <div class="sc bad"><small>Последний ответ на отзыв</small><b>2022</b><small>с тех пор 34 отзыва без ответа</small></div>
+    <div class="sc bad"><small>Карточка в Яндексе</small><b>Ничья</b><small>владелец не подтверждён</small></div>
+  </div>
+</div></header>
+
+<main class="wrap">
+  <div class="compare"><table>
+    <tr><th></th><th>2ГИС</th><th>Яндекс Карты</th></tr>
+    <tr><td>Рейтинг</td><td>5,0 · 46 оценок</td><td>4,6 · 44 оценки</td></tr>
+    <tr><td>Карточка подтверждена</td><td class="n">Плашка «давно не обновляла данные»</td><td class="n">Нет, «Вы владелец этой организации?»</td></tr>
+    <tr><td>Часы работы</td><td>Ежедневно 10–19, «по предварительному звонку»</td><td>Ежедневно 10–19</td></tr>
+    <tr><td>Цены</td><td class="n">Нет</td><td class="n">Нет</td></tr>
+    <tr><td>Ответы на отзывы</td><td class="n">4 из 38, все в июне 2022</td><td class="n">0 из 29</td></tr>
+    <tr><td>Связь</td><td>Телефон, WhatsApp</td><td>Телефон</td></tr>
+    <tr><td>Сайт</td><td class="n">Нет</td><td class="n">Нет</td></tr>
+  </table></div>
+
+  <h2>Что нашёл</h2>
+
+  <div class="find"><span class="num">1</span>
+    <h3>Карточка в Яндекс Картах никому не принадлежит <span class="tag hi">важно</span></h3>
+    <p>На карточке висит «Вы владелец этой организации?». Пока она не подтверждена, нельзя отвечать на отзывы, менять часы, добавлять цены и фото. А в блоке «Похожие места» прямо под вами Яндекс показывает «Дверновъ» (5,0, 33 оценки) с акцией «Покажи цену конкурента, и мы снизим стоимость» и Kuban-Doors со «Скидкой 13% на все межкомнатные двери».</p>
+    <div class="fix"><b>Что сделать:</b> подтвердить карточку через Яндекс Бизнес. Бесплатно, нужен звонок или СМС на номер салона.</div>
+  </div>
+
+  <div class="find"><span class="num">2</span>
+    <h3>В Яндексе 4,6 вместо пяти, и одна оценка явно случайная <span class="tag hi">важно</span></h3>
+    <p>Из 29 отзывов в Яндексе 28 на пять звёзд. Один отзыв с текстом «Отличный магазин. Продавец Роман профессионально всё рассказывает… Рекомендую» стоит с оценкой 1 из 5 (Сергей К., март 2024). Похоже, человек промахнулся. Ещё 15 оценок оставлены без текста. Рядом в выдаче «Дверновъ» с 5,0, и сравнение идёт не в вашу пользу.</p>
+    <div class="fix"><b>Что сделать:</b> после подтверждения карточки ответить Сергею и вежливо попросить поправить оценку. Плюс просить довольных покупателей оставить отзыв в Яндексе после установки: QR-код в салоне и сообщение после монтажа.</div>
+  </div>
+
+  <div class="find"><span class="num">3</span>
+    <h3>2ГИС пишет каждому: «Компания давно не обновляла данные» <span class="tag hi">важно</span></h3>
+    <p>Эту строку видит каждый, кто открывает карточку, а в разделе «Актуальность данных» стоит «не подтверждена». Человек выбирает, кому доверить двери на всю квартиру, и видит, что салон за карточкой не следит.</p>
+    <div class="fix"><b>Что сделать:</b> зайти в личный кабинет 2ГИС и подтвердить данные. Бесплатно, минут 10.</div>
+  </div>
+
+  <div class="find"><span class="num">4</span>
+    <h3>Часы на двери и в карточках разные <span class="tag hi">важно</span></h3>
+    <p>На фото таблички у входа (из карточки 2ГИС): вторник–суббота 10–19, воскресенье и понедельник «плавающие выходные». В 2ГИС «ежедневно с 10 до 19, по предварительному звонку», в Яндексе просто «ежедневно 10–19», без оговорок. На одном из фото на двери ещё и записка «Я на замере (не далеко), звоните» с другим номером, которого нет ни в одной карточке. Кто приедет в понедельник по Яндексу, может упереться в закрытую дверь.</p>
+    <img class="shot" src="img/door.jpg" alt="Дверь салона: табличка с режимом работы и записка про замер" loading="lazy">
+    <div class="fix"><b>Что сделать:</b> одно расписание везде: дверь, 2ГИС, Яндекс, сайт. В обеих карточках приписать «перед визитом лучше позвонить, мастер бывает на замерах» и указать номер, по которому реально отвечают.</div>
+  </div>
+
+  <div class="find"><span class="num">5</span>
+    <h3>Последний ответ на отзыв был в июне 2022 года <span class="tag mid">заметно</span></h3>
+    <p>В 2ГИС 38 отзывов, ответов от салона 4, и все написаны в июне 2022. После этого 34 отзыва остались без ответа, в том числе свежие: сентябрь и октябрь 2026. Люди пишут «Роман профессионал своего дела», «в новой квартире устанавливали аж 6 дверей». Ответы видят будущие покупатели, и карты выше показывают тех, кто отвечает.</p>
+    <div class="fix"><b>Что сделать:</b> ответить на все отзывы в обеих картах и дальше отвечать на новые. 15 минут в неделю, могу взять это на себя.</div>
+  </div>
+
+  <div class="find"><span class="num">6</span>
+    <h3>Нет цен, и вопросы о них за вас отвечает робот <span class="tag mid">заметно</span></h3>
+    <p>Вкладка «Цены» в 2ГИС пустая, в Яндексе цен тоже нет. В «Вопросах о месте» висят «Сколько стоят двери?», «Есть ли двери в наличии?», «Делаете демонтаж старых дверей?», «Есть ли рассрочка?», и на них отвечает ИИ-помощник 2ГИС, а не вы. При этом в отзыве прямо пишут, что выбрали вас, потому что «цены видно на ценниках».</p>
+    <div class="fix"><b>Что сделать:</b> 10–15 позиций с ценой «от»: межкомнатная дверь, входная, установка, демонтаж, фурнитура, ламинат. Ответить на вопросы о месте от имени салона.</div>
+  </div>
+
+  <div class="find"><span class="num">7</span>
+    <h3>На вашей карточке в 2ГИС рекламируются другие салоны дверей <span class="tag mid">заметно</span></h3>
+    <p>В блоке «Похожие организации» под вашим адресом: «Двери Эстетика входа» с кнопкой «Перейти на сайт» и пометкой «Реклама», «Дверной эксперт: белорусские двери от 7800р» с кнопкой «Рассчитать стоимость», «Крд-монтаж» с «Узнать стоимость». У них есть цены и кнопки, у вас нет даже сайта.</p>
+    <div class="fix"><b>Что сделать:</b> заполненная карточка с ценами, фото и ответами забирает внимание на себя. В рекламных пакетах 2ГИС есть возможность убрать конкурентов со своей карточки, цену стоит уточнить отдельно.</div>
+  </div>
+
+  <div class="find"><span class="num">8</span>
+    <h3>Про установку пишут постоянно, а в рубриках её нет <span class="tag lo">просто</span></h3>
+    <p>В 2ГИС рубрики: межкомнатные двери, входные, комплектующие, напольные покрытия, натяжные потолки. Рубрики «Установка дверей» нет, хотя во многих отзывах речь именно о монтаже: «доставили и установили», «быстро привезли и качественно поставили». В контактах только телефон и WhatsApp, а на вывеске ещё кварцвинил, SPC и плинтус.</p>
+    <img class="shot" src="img/facade.jpg" alt="Вывеска салона: двери, натяжные потолки, кварцвинил, SPC, фурнитура" loading="lazy">
+    <div class="fix"><b>Что сделать:</b> добавить рубрики «Установка дверей» и «Замер дверных проёмов», в описании перечислить всё с вывески. Добавить MAX и сайт в контакты.</div>
+  </div>
+
+  <div class="offer">
+    <h2>Что предлагаю</h2>
+    <p>Беру на себя всё из списка, от вас нужно только подтвердить карточки кодом из СМС.</p>
+    <ul>
+      <li>Подтвердить карточки в 2ГИС и Яндексе, выставить одни часы, рубрики и цены «от»</li>
+      <li>Ответить на все отзывы и дальше отвечать на новые, разобраться с оценкой 1 из 5</li>
+      <li>Поставить первыми лучшие фото: фасад, зал, установленные двери</li>
+      <li>Сайт салона со ссылкой из обеих карточек: <a class="inl" href="index.html">вот концепт</a></li>
+      <li>Раз в месяц отчёт: сколько людей посмотрели карточку, позвонили и построили маршрут</li>
+    </ul>
+    <p style="margin-bottom:18px">Разбор бесплатный. Стоимость работ обсудим, она небольшая.</p>
+    <div class="btns">
+      <a class="btn" href="https://t.me/DezmontDeXa" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a class="btn o" href="tel:+79147765705">+7 914 776-57-05</a>
+    </div>
+  </div>
+</main>
+<footer><div class="wrap">Данные из открытых карточек 2ГИС и Яндекс Карт на 28 октября 2026. Фото из карточки 2ГИС. Александр Ли.</div></footer>
+</body>
+</html>

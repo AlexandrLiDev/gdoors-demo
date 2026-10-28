@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>G.doors, салон дверей · концепт сайта</title>
+<meta name="description" content="Концепт сайта салона дверей G.doors в Краснодаре: межкомнатные и входные двери, замер, доставка и установка. Демо, не официальный сайт.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Сайт для «G.doors»">
+<meta property="og:description" content="Двери для новой квартиры: подбор в салоне или по фото проёма, замер, доставка и установка. Губернский, Героев-Разведчиков, 52/1.">
+<meta property="og:image" content="https://alexandrlidev.github.io/gdoors-demo/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://alexandrlidev.github.io/gdoors-demo/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{--graphite:#1C1D20;--graphite-2:#2A2B2F;--gold:#C9A45C;--gold-d:#A9873F;--gold-l:#F3EAD7;--paper:#F4F2EE;--card:#fff;--ink:#1C1D20;--muted:#6E6A63;--line:#E2DED6;--ok:#2E8A57;--bad:#B9412E;--r:14px;--r-lg:24px;--shadow:0 18px 40px -22px rgba(0,0,0,.35)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:700;line-height:1.08;letter-spacing:-.01em}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold-d)}
+.kicker:before{content:"";width:28px;height:2px;background:var(--gold)}
+
+.ribbon{background:#0F1012;color:#cfcac0;font-size:13px;padding:8px 0}
+.ribbon .wrap{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}
+.ribbon b{color:var(--gold)}
+.ribbon a{color:#fff;font-weight:600}
+
+header.top{position:sticky;top:0;z-index:50;background:rgba(28,29,32,.96);backdrop-filter:blur(10px);color:#fff}
+header.top .wrap{display:flex;align-items:center;gap:18px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo .gd{width:42px;height:42px;border:1.5px solid var(--gold);display:grid;place-items:center;font-family:"Playfair Display";font-weight:700;font-size:19px;color:var(--gold);letter-spacing:-.04em}
+.logo .nm{line-height:1.05}
+.logo .nm b{display:block;font-family:"Playfair Display";font-size:19px;color:var(--gold);font-weight:700}
+.logo .nm small{font-size:9.5px;letter-spacing:.22em;color:#d7d2c7;font-weight:600}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);white-space:nowrap;color:#e9e5dc}
+.dot{width:8px;height:8px;border-radius:50%;background:#3DBA74;box-shadow:0 0 0 4px rgba(61,186,116,.18)}
+.dot.closed{background:#E0614C;box-shadow:0 0 0 4px rgba(224,97,76,.18)}
+nav.links{display:flex;gap:22px;font-weight:600;font-size:14.5px;color:#d7d2c7}
+nav.links a{text-decoration:none}
+nav.links a:hover{color:#fff}
+.sp{flex:1}
+.phone{font-weight:700;text-decoration:none;white-space:nowrap;color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 22px;border-radius:10px;font-weight:700;font-size:15.5px;text-decoration:none;transition:transform .15s,background .15s,border-color .15s}
+.btn:active{transform:translateY(1px)}
+.btn-gold{background:var(--gold);color:#1C1D20}.btn-gold:hover{background:#D6B46E}
+.btn-dark{background:var(--graphite);color:#fff}.btn-dark:hover{background:#000}
+.btn-line{border:1.5px solid var(--line);background:#fff}.btn-line:hover{border-color:var(--ink)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.3);color:#fff}.btn-ghost:hover{border-color:#fff}
+.btn-sm{padding:10px 15px;font-size:14.5px}
+
+/* hero */
+.hero{background:var(--graphite);color:#fff;padding:0 0 0;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;min-height:600px}
+.hero-txt{padding:64px 48px 56px 0;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:clamp(38px,5.2vw,66px);margin:18px 0 20px}
+.hero h1 i{font-style:italic;color:var(--gold)}
+.lead{font-size:18.5px;color:#d7d2c7;max-width:44ch}
+.path{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 28px;counter-reset:p}
+.path li{counter-increment:p;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#ece7dd;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:99px;padding:6px 14px 6px 6px}
+.path li:before{content:counter(p);width:24px;height:24px;border-radius:50%;background:var(--gold);color:#1C1D20;display:grid;place-items:center;font-size:12px;font-weight:800}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.rates{display:flex;gap:22px;flex-wrap:wrap;margin-top:30px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12)}
+.rate{font-size:13.5px;color:#bdb7ab}
+.rate b{display:block;font-family:"Playfair Display";font-size:28px;color:#fff;font-weight:700}
+.rate b span{color:var(--gold);font-size:20px}
+.hero-photo{position:relative;margin-right:calc(min(0px,(1180px - 100vw)/2) - 20px)}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--graphite) 0,rgba(28,29,32,0) 22%)}
+.ph-note{position:absolute;right:16px;bottom:16px;z-index:2;background:rgba(15,16,18,.72);color:#ddd;font-size:12px;padding:4px 9px;border-radius:6px}
+.float{position:absolute;left:36px;bottom:36px;z-index:2;background:#fff;color:var(--ink);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow);max-width:290px;font-size:14px;display:flex;gap:12px;align-items:center}
+.float .ic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--gold-l);color:var(--gold-d);display:grid;place-items:center}
+.float b{display:block;font-size:15px}
+
+section{padding:72px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:30px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(30px,3.8vw,46px);margin-top:12px;max-width:18ch}
+.sec-head p{color:var(--muted);max-width:44ch}
+
+/* catalogue */
+.cat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.item{position:relative;text-align:left;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.item:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.item .pic{aspect-ratio:3/4;background:#e9e6e0;overflow:hidden}
+.item .pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.item:hover .pic img{transform:scale(1.04)}
+.item .meta{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.item h3{font-family:Manrope;font-size:16.5px;font-weight:800;letter-spacing:0}
+.item p{font-size:14px;color:var(--muted)}
+.item .from{margin-top:auto;padding-top:8px;display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:16px}
+.item .from span{font-size:12.5px;font-weight:700;color:var(--gold-d);text-transform:uppercase;letter-spacing:.06em}
+.item .tag{position:absolute;left:10px;top:10px;background:rgba(28,29,32,.85);color:#fff;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:6px;letter-spacing:.03em}
+.note{font-size:14px;color:var(--muted);margin-top:16px}
+.extra{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.extra button{display:grid;grid-template-columns:140px 1fr;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-align:left;transition:box-shadow .2s}
+.extra button:hover{box-shadow:var(--shadow)}
+.extra img{width:100%;height:100%;object-fit:cover;min-height:130px}
+.extra div{padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.extra h3{font-family:Manrope;font-size:16.5px;font-weight:800}
+.extra p{font-size:14px;color:var(--muted)}
+.extra b{margin-top:auto;padding-top:6px}
+
+/* process */
+.process{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:s}
+.step{padding:6px 22px 0 0;position:relative}
+.step:before{counter-increment:s;content:"0" counter(s);font-family:"Playfair Display";font-size:40px;color:var(--gold);display:block;line-height:1;margin-bottom:14px}
+.step:after{content:"";position:absolute;left:62px;right:18px;top:22px;height:1px;background:var(--line)}
+.step:last-child:after{display:none}
+.step h3{font-family:Manrope;font-size:17px;font-weight:800;margin-bottom:6px}
+.step p{font-size:14.5px;color:var(--muted)}
+.proof{margin-top:34px;display:flex;gap:16px;align-items:flex-start;background:var(--paper);border-radius:var(--r);padding:18px 20px}
+.proof q{font-family:"Playfair Display";font-style:italic;font-size:19px;line-height:1.4}
+.proof small{display:block;color:var(--muted);margin-top:6px;font-size:13.5px}
+.proof .qm{font-family:"Playfair Display";font-size:56px;line-height:.8;color:var(--gold)}
+
+/* photo ask */
+.ask{background:var(--graphite);color:#fff;border-radius:28px;padding:48px;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.ask h2{font-size:clamp(30px,3.8vw,46px);margin:14px 0 16px}
+.ask h2 i{color:var(--gold)}
+.ask p{color:#cfcac0;font-size:17px;max-width:44ch}
+.ask ol{list-style:none;display:grid;gap:12px;margin:24px 0 28px}
+.ask li{display:flex;gap:12px;color:#ece7dd}
+.ask li b{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:13px}
+.phone-mock{width:100%;max-width:330px;margin:0 auto;background:#EEF0F4;border-radius:30px;padding:12px;border:7px solid #0d0d0f;color:var(--ink)}
+.chat-head{display:flex;align-items:center;gap:9px;background:#fff;border-radius:16px;padding:8px 10px;font-size:13px}
+.chat-head .av{width:32px;height:32px;border:1.5px solid var(--gold);background:var(--graphite);color:var(--gold);display:grid;place-items:center;font-family:"Playfair Display";font-weight:700;font-size:12px;border-radius:50%}
+.chat{display:flex;flex-direction:column;gap:8px;padding:12px 2px 4px;min-height:340px;font-size:13px}
+.msg{max-width:86%;padding:8px 11px;border-radius:13px;opacity:0;transform:translateY(6px);transition:all .35s}
+.msg.show{opacity:1;transform:none}
+.msg.me{align-self:flex-end;background:#DCE6FF}
+.msg.them{align-self:flex-start;background:#fff}
+.msg .thumb{width:140px;height:110px;border-radius:9px;background:url(img/w-newbuild.jpg) center 40%/cover;margin-bottom:6px}
+.replay{color:#a8a296;font-size:13px;text-decoration:underline;margin-top:12px}
+
+/* install */
+.install{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+.incl{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:28px}
+.incl h3{font-size:26px;margin-bottom:16px}
+.incl ul{list-style:none;display:grid;gap:12px}
+.incl li{display:flex;gap:12px;align-items:flex-start}
+.incl li svg{flex:none;margin-top:2px;color:var(--gold-d)}
+.incl li span small{display:block;color:var(--muted);font-size:13.5px}
+.incl .sum{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px dashed var(--line);font-weight:800}
+.incl .sum em{font-style:normal;font-weight:600;color:var(--muted);font-size:13px}
+.inst-photo{position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:420px}
+.inst-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.inst-photo figcaption{position:absolute;left:16px;right:16px;bottom:16px;background:rgba(255,255,255,.95);border-radius:14px;padding:12px 14px;font-size:14px}
+.inst-photo figcaption b{display:block}
+
+/* works */
+.works{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.works figure{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/4;background:#ddd}
+.works img{width:100%;height:100%;object-fit:cover}
+.works figcaption{position:absolute;left:0;right:0;bottom:0;padding:24px 10px 9px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;font-size:13px;font-weight:700}
+
+/* reviews */
+.revs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rev{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column}
+.rev .stars{color:var(--gold);letter-spacing:2px}
+.rev p{margin:10px 0 14px;font-family:"Playfair Display";font-size:17.5px;line-height:1.4}
+.rev small{color:var(--muted);margin-top:auto}
+.roman{margin-top:16px;background:var(--gold-l);border-radius:var(--r);padding:16px 20px;font-size:15.5px}
+
+/* find */
+.find{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.fac{position:relative;border-radius:var(--r-lg);overflow:hidden;background:#ddd;min-height:360px}
+.fac img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fac figcaption{position:absolute;left:14px;bottom:14px;right:14px;background:#fff;border-radius:12px;padding:12px 14px;font-size:14px;box-shadow:var(--shadow)}
+.fac figcaption b{display:block}
+.info{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:20px;display:grid;gap:12px;align-content:start}
+.info .row{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid var(--line);padding-bottom:10px;font-size:15px}
+.info .row span{color:var(--muted);flex:none}
+.info .row b{text-align:right}
+.info .row:last-of-type{border-bottom:0}
+#map{height:240px;border-radius:var(--r);border:1px solid var(--line);z-index:1}
+
+footer{background:#0F1012;color:#bdb7ab;padding:44px 0 110px;margin-top:20px}
+footer .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:30px}
+.demo-box{background:#1B1C1F;border:1px dashed #4a4740;border-radius:var(--r);padding:16px;font-size:14px}
+.demo-box b{color:var(--gold)}
+footer a{color:#fff}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay.show{opacity:1;pointer-events:auto}
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%);opacity:0;pointer-events:none;width:min(520px,calc(100% - 32px));max-height:calc(100% - 32px);overflow:auto;background:#fff;border-radius:var(--r-lg);z-index:110;transition:all .2s}
+.modal.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+.modal .mimg{width:100%;height:190px;object-fit:cover}
+.modal .mb{padding:22px 24px 24px}
+.modal h3{font-size:26px;margin-bottom:8px;padding-right:30px}
+.modal p{color:var(--muted)}
+.x{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.92);z-index:2}
+.x:hover{background:#eee}
+.plist{display:grid;gap:7px;margin-top:14px}
+.plist div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:7px}
+.plist b{white-space:nowrap}
+.mbar{display:none}
+
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;min-height:0}
+  .hero-txt{padding:40px 0 34px}
+  .hero-photo{margin:0 -20px;min-height:380px}
+  .hero-photo:after{background:linear-gradient(180deg,var(--graphite) 0,rgba(28,29,32,0) 25%)}
+  .cat{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr 1fr;gap:26px}
+  .step:after{display:none}
+  .ask,.install,.find{grid-template-columns:1fr}
+  .works{grid-template-columns:repeat(3,1fr)}
+  .revs{grid-template-columns:repeat(2,1fr)}
+  nav.links{display:none}
+  footer .wrap{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  header.top .wrap{height:60px;gap:10px}
+  .logo .gd{width:36px;height:36px;font-size:16px}
+  .logo .nm small{display:none}
+  .phone,.st-long,.hdr-max{display:none}
+  .hero-txt{padding:30px 0 28px}
+  .hero-photo{margin:0 -16px;min-height:320px}
+  .float{left:12px;right:12px;bottom:12px;max-width:none}
+  .lead{font-size:17px}
+  .rates{gap:18px}
+  .cat{gap:10px}
+  .item .meta{padding:12px}
+  .item h3{font-size:15px}
+  .item p{display:none}
+  .item .from{font-size:14.5px;flex-direction:column;align-items:flex-start;gap:0}
+  .extra{grid-template-columns:1fr}
+  .extra button{grid-template-columns:110px 1fr}
+  .steps{grid-template-columns:1fr}
+  .works{grid-template-columns:repeat(2,1fr)}
+  .revs{grid-template-columns:1fr}
+  .ask{padding:28px 18px;border-radius:22px}
+  .incl{padding:22px 18px}
+  .inst-photo{min-height:340px}
+  section{padding:48px 0}
+  .info .row{flex-direction:column;gap:2px}
+  .info .row b{text-align:left}
+  .mbar{display:grid;grid-template-columns:repeat(3,1fr);position:fixed;left:10px;right:10px;bottom:10px;z-index:80;background:var(--graphite);border:1px solid #3a3a3e;border-radius:16px;padding:6px;gap:6px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+  .mbar a,.mbar button{display:flex;flex-direction:column;align-items:center;gap:2px;color:#fff;font-size:12px;font-weight:700;padding:8px 4px;border-radius:12px;text-decoration:none}
+  .mbar .g{background:var(--gold);color:#1C1D20}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="ribbon"><div class="wrap">
+  <span><b>Концепт сайта</b> для «G.doors». Цены для примера.</span>
+  <span>Сделал Александр Ли · <a href="https://t.me/DezmontDeXa" target="_blank" rel="noopener">Telegram</a></span>
+</div></div>
+
+<header class="top"><div class="wrap">
+  <a class="logo" href="#top" aria-label="G.doors, салон дверей"><span class="gd">GD</span><span class="nm"><b>G.doors</b><small>САЛОН ДВЕРЕЙ</small></span></a>
+  <span class="status"><span class="dot" id="dot"></span><span id="stText">…</span></span>
+  <nav class="links"><a href="#catalog">Каталог</a><a href="#process">Как работаем</a><a href="#photo">Фото проёма</a><a href="#works">Работы</a><a href="#find">Как найти</a></nav>
+  <span class="sp"></span>
+  <a class="phone" href="tel:+79891418252">+7 989 141-82-52</a>
+  <button class="btn btn-gold btn-sm hdr-max" data-max>Написать в MAX</button>
+</div></header>
+
+<main id="top">
+<section class="hero" style="padding:0"><div class="wrap hero-grid">
+  <div class="hero-txt">
+    <span class="kicker">Салон дверей в Губернском</span>
+    <h1>Двери для новой квартиры. <i>Без хлопот</i> от выбора до установки.</h1>
+    <p class="lead">Межкомнатные и входные двери, фурнитура и напольные покрытия. Поможем выбрать, замерим проёмы, привезём и поставим.</p>
+    <ol class="path"><li>Подбор</li><li>Замер</li><li>Доставка</li><li>Установка</li></ol>
+    <div class="cta">
+      <button class="btn btn-gold" data-max>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+        Прислать фото проёма
+      </button>
+      <a class="btn btn-ghost" href="#catalog">Смотреть каталог</a>
+    </div>
+    <div class="rates">
+      <span class="rate"><b>5,0 <span>★</span></b>2ГИС · 46 оценок</span>
+      <span class="rate"><b>4,6 <span>★</span></b>Яндекс · 44 оценки</span>
+      <span class="rate"><b>10–19</b>каждый день</span>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="img/hero.jpg" alt="Зал салона: ряд межкомнатных и входных дверей" fetchpriority="high">
+    <div class="float"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="1"/><circle cx="15" cy="12" r="1"/></svg></span><div><b>Двери стоят в зале</b>Можно потрогать, открыть и сравнить</div></div>
+    <span class="ph-note">Фото из 2ГИС</span>
+  </div>
+</div></section>
+
+<section id="catalog"><div class="wrap">
+  <div class="sec-head">
+    <div><span class="kicker">Каталог</span><h2>Что можно выбрать в салоне</h2></div>
+    <p>Нажмите на раздел, чтобы увидеть цены «от» и что входит. Все фото настоящие, из карточки салона.</p>
+  </div>
+  <div class="cat" id="cat"></div>
+  <div class="extra" id="extra"></div>
+  <p class="note">Цены в концепте для примера, на сайте будут ваши. Точную сумму считаем после замера.</p>
+</div></section>
+
+<section class="process" id="process"><div class="wrap">
+  <div class="sec-head">
+    <div><span class="kicker">Как работаем</span><h2>От первого вопроса до готового проёма</h2></div>
+    <p>Двери покупают один раз на много лет, поэтому не торопим и объясняем, чем отличаются модели.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><h3>Подбор</h3><p>В салоне или по фото проёма в MAX. Расскажем, что подойдёт под ваш ремонт и бюджет.</p></div>
+    <div class="step"><h3>Замер</h3><p>Приедем и померим проёмы, подскажем про доборы, пороги и направление открывания.</p></div>
+    <div class="step"><h3>Договор и цена</h3><p>Фиксируем модели, размеры и сумму с установкой.</p></div>
+    <div class="step"><h3>Доставка</h3><p>Привозим, когда вам удобно. Модели в наличии обычно за 1–2 дня.</p></div>
+    <div class="step"><h3>Установка</h3><p>Ставим коробку, наличники, фурнитуру. Проверяем, как всё открывается.</p></div>
+  </div>
+  <div class="proof"><span class="qm">“</span><div><q>Уже на следующий день нам привезли саму дверь, ещё через два дня установили.</q><small>Из отзыва в 2ГИС, октябрь 2025</small></div></div>
+</div></section>
+
+<section id="photo"><div class="wrap"><div class="ask">
+  <div>
+    <span class="kicker">Подбор по фото</span>
+    <h2>Сфотографируйте проём. <i>Подберём модели и посчитаем.</i></h2>
+    <p>Не нужно ехать в салон, чтобы понять бюджет. Пришлите фото проёмов и пару слов о ремонте, Роман предложит модели и примерную стоимость с установкой.</p>
+    <ol>
+      <li><b>1</b><span>Нажмите кнопку, откроется чат салона в MAX.</span></li>
+      <li><b>2</b><span>Пришлите фото проёмов и сколько нужно дверей.</span></li>
+      <li><b>3</b><span>Получите 2–3 варианта с ценой и договоритесь о замере.</span></li>
+    </ol>
+    <button class="btn btn-gold" data-max>Отправить фото в MAX</button>
+    <div><button class="replay" id="replay">Показать ещё раз, как это выглядит</button></div>
+  </div>
+  <div class="phone-mock" aria-label="Пример переписки">
+    <div class="chat-head"><span class="av">GD</span><div><b>G.doors, салон дверей</b><br><small style="color:#6E6A63">MAX</small></div></div>
+    <div class="chat" id="chat">
+      <div class="msg me"><div class="thumb"></div>Здравствуйте! Новостройка, нужна входная и 4 межкомнатные. Хочется светлые, без стекла.</div>
+      <div class="msg them">Здравствуйте! Подойдут гладкие белые или с фрезеровкой, отправлю фото из зала. Входную лучше с зеркалом, прихожая узкая.</div>
+      <div class="msg them"><b>Комплект с установкой от 78 000 ₽.</b> Точнее скажу после замера. Можем приехать в субботу.</div>
+      <div class="msg me">Отлично, давайте в субботу 👍</div>
+    </div>
+  </div>
+</div></div></section>
+
+<section id="install"><div class="wrap">
+  <div class="sec-head">
+    <div><span class="kicker">Установка</span><h2>Что входит в установку</h2></div>
+    <p>Чтобы не было сюрпризов, заранее пишем, что делаем и что считается отдельно.</p>
+  </div>
+  <div class="install">
+    <div class="incl">
+      <h3>Межкомнатная дверь под ключ</h3>
+      <ul id="incl"></ul>
+      <div class="sum"><span>Установка межкомнатной двери</span><span>от 3 500 ₽ <em>для примера</em></span></div>
+      <div class="sum" style="margin-top:0;border-top:0;padding-top:6px"><span>Установка входной двери</span><span>от 5 000 ₽ <em>для примера</em></span></div>
+    </div>
+    <figure class="inst-photo">
+      <img src="img/w-newbuild.jpg" alt="Входная дверь, установленная в квартире в новостройке" loading="lazy">
+      <figcaption><b>Квартира в новостройке</b>Входная дверь поставлена до чистовой отделки. Фото из карточки 2ГИС.</figcaption>
+    </figure>
+  </div>
+</div></section>
+
+<section id="works" style="padding-top:20px"><div class="wrap">
+  <div class="sec-head">
+    <div><span class="kicker">Работы</span><h2>Двери, которые уже стоят у соседей</h2></div>
+    <p>Фото установленных дверей из карточки салона в 2ГИС.</p>
+  </div>
+  <div class="works">
+    <figure><img src="img/w-light.jpg" alt="Белая дверь с подсветкой по контуру" loading="lazy"><figcaption>Классика с подсветкой</figcaption></figure>
+    <figure><img src="img/w-glass.jpg" alt="Белая дверь с чёрным стеклом" loading="lazy"><figcaption>Белая с чёрным стеклом</figcaption></figure>
+    <figure><img src="img/w-frame.jpg" alt="Белая дверь с чёрной окантовкой" loading="lazy"><figcaption>С чёрным контуром</figcaption></figure>
+    <figure><img src="img/w-black.jpg" alt="Чёрная входная дверь" loading="lazy"><figcaption>Входная, чёрная</figcaption></figure>
+    <figure><img src="img/w-white.jpg" alt="Входная дверь с белой панелью" loading="lazy"><figcaption>Входная, белая панель</figcaption></figure>
+    <figure><img src="img/double.jpg" alt="Двустворчатая дверь со стеклом" loading="lazy"><figcaption>Двустворчатая</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="reviews" style="padding-top:20px"><div class="wrap">
+  <div class="sec-head"><div><span class="kicker">Отзывы из 2ГИС</span><h2>Что говорят покупатели</h2></div><p>5,0 в 2ГИС по 46 оценкам.</p></div>
+  <div class="revs">
+    <div class="rev"><div class="stars">★★★★★</div><p>В новой квартире устанавливали аж 6 дверей, всё прекрасно, быстро, качественно.</p><small>Арина К., сентябрь 2024</small></div>
+    <div class="rev"><div class="stars">★★★★★</div><p>Через 3 дня установили, аккуратно, быстро, без каких-либо ошибок.</p><small>Katerina M., февраль 2026</small></div>
+    <div class="rev"><div class="stars">★★★★★</div><p>Хороший магазин, а главное рядом с домом. Большой выбор дверей.</p><small>Маргарита М., июль 2024</small></div>
+    <div class="rev"><div class="stars">★★★★★</div><p>Всё чётко: доставили и установили входную, межкомнатные двери.</p><small>Ирина С., октябрь 2026</small></div>
+  </div>
+  <div class="roman">В отзывах чаще всего благодарят Романа: за то, что объясняет разницу между моделями, честно говорит, что хорошо, а что нет, и учитывает нюансы проёма.</div>
+</div></section>
+
+<section id="find"><div class="wrap">
+  <div class="sec-head">
+    <div><span class="kicker">Как найти</span><h2>Салон на Героев-Разведчиков, 52/1</h2></div>
+    <p>Красный фасад, чёрная вывеска «G.Doors Двери». Рядом остановка «СК Екатеринодар».</p>
+  </div>
+  <div class="find">
+    <figure class="fac">
+      <img src="img/facade.jpg" alt="Фасад салона с вывеской G.Doors Двери" loading="lazy">
+      <figcaption><b>Ищите вывеску «G.Doors Двери»</b>Над входом жёлтая надпись «Натяжные потолки»</figcaption>
+    </figure>
+    <div class="info">
+      <div id="map" aria-label="Карта"></div>
+      <div class="row"><span>Адрес</span><b>ул. Героев-Разведчиков, 52/1, Губернский</b></div>
+      <div class="row"><span>Часы</span><b>Ежедневно 10:00–19:00, лучше позвонить заранее</b></div>
+      <div class="row"><span>Телефон</span><a href="tel:+79891418252"><b>+7 989 141-82-52</b></a></div>
+      <div class="row"><span>Оплата</span><b>Карта, наличные, QR, перевод, по счёту</b></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn btn-dark btn-sm" target="_blank" rel="noopener" href="https://yandex.ru/maps/?rtext=~45.069613,39.034442&rtt=auto">Маршрут</a>
+        <a class="btn btn-line btn-sm" target="_blank" rel="noopener" href="https://2gis.ru/krasnodar/firm/70000001050288513">2ГИС</a>
+        <a class="btn btn-line btn-sm" target="_blank" rel="noopener" href="https://yandex.ru/maps/org/g_doors/129801722920/">Яндекс Карты</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div>
+    <span class="logo"><span class="gd">GD</span><span class="nm"><b>G.doors</b><small>САЛОН ДВЕРЕЙ</small></span></span>
+    <p style="margin-top:14px;max-width:46ch">Межкомнатные и входные двери, фурнитура, напольные покрытия: кварцвинил, SPC, ламинат, плинтус. Натяжные потолки. Замер, доставка и установка.</p>
+  </div>
+  <div class="demo-box"><b>Это демо.</b> Сделано, чтобы показать идею: каталог с ценами «от», подбор по фото проёма в MAX, понятная установка и дорога до салона.<br><br>Александр Ли · <a href="https://t.me/DezmontDeXa" target="_blank" rel="noopener">@DezmontDeXa</a> · <a href="tel:+79147765705">+7 914 776-57-05</a></div>
+</div></footer>
+
+<nav class="mbar" aria-label="Быстрые действия">
+  <a href="tel:+79891418252"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Позвонить</a>
+  <button class="g" data-max><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Фото проёма</button>
+  <a href="#find"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Как найти</a>
+</nav>
+
+<div class="overlay" id="ov"></div>
+<div class="modal" id="md" role="dialog" aria-modal="true"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const OPEN=10,CLOSE=19;
+const CAT=[
+ {img:'int-glass',tag:'Хит',t:'Межкомнатные',d:'Экошпон, эмаль, со стеклом и без. Белые, серые, под дерево.',from:'6 500',list:[['Экошпон, полотно','от 6 500 ₽'],['Со стеклом, полотно','от 8 000 ₽'],['Эмаль, полотно','от 11 000 ₽'],['Коробка и наличники, комплект','от 3 500 ₽']],tip:'Для новостройки обычно берут одну модель на всю квартиру: так проще с наличниками и выглядит цельно.'},
+ {img:'ent-black',tag:'В квартиру и дом',t:'Входные',d:'Металлические двери в квартиру и частный дом, с зеркалом и без.',from:'22 000',list:[['В квартиру','от 22 000 ₽'],['С зеркалом внутри','от 27 000 ₽'],['Для дома, с терморазрывом','от 45 000 ₽'],['Демонтаж старой двери','от 1 500 ₽']],tip:'Входную лучше ставить до чистовой отделки, чтобы потом не править откосы.'},
+ {img:'hidden',tag:'Под покраску',t:'Скрытые',d:'Полотно в плоскости стены, без наличников. Красится в цвет стен.',from:'14 000',list:[['Скрытая дверь под покраску','от 14 000 ₽'],['Скрытые петли','входят в комплект'],['Магнитный замок','от 1 800 ₽']],tip:'Скрытую дверь нужно планировать до штукатурки, напишите нам на этапе черновой отделки.'},
+ {img:'book',tag:'Экономят место',t:'Книжки и двустворчатые',d:'Складные двери для узких коридоров и широкие двустворчатые проёмы.',from:'16 000',list:[['Дверь-книжка','от 16 000 ₽'],['Двустворчатая со стеклом','от 18 000 ₽'],['Раздвижная система','от 9 000 ₽']],tip:'Книжка открывается внутрь проёма и почти не занимает места в коридоре.'}
+];
+const EXTRA=[
+ {img:'handles',t:'Фурнитура',d:'Ручки, замки, петли, ограничители. Стенд с образцами в зале.',from:'от 900 ₽',list:[['Ручка на розетке','от 900 ₽'],['Защёлка магнитная','от 1 200 ₽'],['Скрытые петли, пара','от 2 500 ₽'],['Ограничитель','от 300 ₽']],tip:'Ручки и петли подберём под цвет полотна, врежем при установке.'},
+ {img:'floor',t:'Напольные покрытия',d:'Кварцвинил, SPC, ламинат и плинтус. Образцы в салоне.',from:'от 1 200 ₽/м²',list:[['Ламинат','от 1 200 ₽/м²'],['SPC','от 1 900 ₽/м²'],['Кварцвинил','от 2 300 ₽/м²'],['Плинтус','от 350 ₽/м']],tip:'Удобно выбрать пол и двери вместе: сразу видно, как сочетаются оттенки.'}
+];
+const INCL=[['Замер проёмов','Подскажем про доборы и пороги'],['Доставка до квартиры',''],['Сборка и установка коробки','Ровно по уровню, на пену и крепёж'],['Наличники и доборы',''],['Врезка ручки, замка и петель',''],['Проверка и регулировка','Дверь не скрипит и не трёт'],['Уборка за собой','Упаковку забираем']];
+const ICK='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+$('#cat').innerHTML=CAT.map((c,k)=>`<button class="item" data-cat="c${k}"><span class="tag">${c.tag}</span><span class="pic"><img src="img/${c.img}.jpg" alt="${c.t} двери" loading="lazy"></span><span class="meta"><h3>${c.t}</h3><p>${c.d}</p><span class="from">от ${c.from} ₽<span>Цены</span></span></span></button>`).join('');
+$('#extra').innerHTML=EXTRA.map((c,k)=>`<button data-cat="e${k}"><img src="img/${c.img}.jpg" alt="${c.t}" loading="lazy"><div><h3>${c.t}</h3><p>${c.d}</p><b>${c.from}</b></div></button>`).join('');
+$('#incl').innerHTML=INCL.map(([a,b])=>`<li>${ICK}<span>${a}${b?`<small>${b}</small>`:''}</span></li>`).join('');
+
+const ov=$('#ov'),md=$('#md');
+const X='<button class="x" data-close aria-label="Закрыть"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>';
+function openModal(h){md.innerHTML=X+h;md.scrollTop=0;md.classList.add('show');ov.classList.add('show')}
+function closeAll(){md.classList.remove('show');ov.classList.remove('show')}
+ov.onclick=closeAll;md.addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeAll()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+function maxModal(){openModal(`<div class="mb"><h3>Чат салона в MAX</h3><p>В рабочей версии кнопка сразу открывает чат салона в MAX с готовым текстом «Здравствуйте! Хочу подобрать двери, отправляю фото проёмов». Остаётся прикрепить фото.</p><p style="margin-top:10px">В концепте переход отключён, чтобы салону не писали с демо-страницы.</p><button class="btn btn-gold" style="margin-top:18px" data-close>Понятно</button></div>`)}
+document.addEventListener('click',e=>{if(e.target.closest('[data-max]')){maxModal();return}
+  const b=e.target.closest('[data-cat]');if(!b)return;const id=b.dataset.cat;const c=id[0]==='c'?CAT[+id.slice(1)]:EXTRA[+id.slice(1)];
+  openModal(`<img class="mimg" src="img/${c.img}.jpg" alt=""><div class="mb"><h3>${c.t}</h3><p>${c.d}</p><div class="plist">${c.list.map(([a,p])=>`<div><span>${a}</span><b>${p}</b></div>`).join('')}</div><p style="margin-top:14px"><b style="color:#1C1D20">Совет:</b> ${c.tip}</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:18px"><button class="btn btn-gold btn-sm" data-max>Подобрать по фото</button><a class="btn btn-line btn-sm" href="#find" data-close>Приехать в салон</a></div><p style="font-size:13px;margin-top:12px">Цены для примера.</p></div>`)});
+
+const nowKrd=()=>{const [h,m]=new Date().toLocaleString('en-US',{timeZone:'Europe/Moscow',hour12:false,hour:'2-digit',minute:'2-digit'}).split(':').map(Number);return {h:h%24,m}};
+function status(){const {h,m}=nowKrd();const open=h>=OPEN&&h<CLOSE;const left=CLOSE*60-(h*60+m);$('#dot').classList.toggle('closed',!open);
+  $('#stText').innerHTML=open?(left<=60?`Открыто · до закрытия ${left} мин`:'Открыто<span class="st-long"> · до 19:00</span>'):'Закрыто<span class="st-long"> · откроемся в 10:00</span>'}
+status();setInterval(status,60000);
+
+function playChat(){const ms=[...document.querySelectorAll('#chat .msg')];ms.forEach(m=>m.classList.remove('show'));ms.forEach((m,i)=>setTimeout(()=>m.classList.add('show'),400+i*1000))}
+let played=false;new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!played){played=true;playChat()}}),{threshold:.4}).observe($('#chat'));
+$('#replay').onclick=playChat;
+
+try{const map=L.map('map',{scrollWheelZoom:false}).setView([45.069613,39.034442],16);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(map);
+  L.marker([45.069613,39.034442],{icon:L.divIcon({className:'',html:'<div style="background:#1C1D20;border:2px solid #C9A45C;width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>',iconSize:[30,30],iconAnchor:[15,30]})}).addTo(map).bindPopup('<b>G.doors</b><br>Героев-Разведчиков, 52/1')}catch(e){$('#map').innerHTML='<p style="padding:20px;color:#6E6A63">Карта не загрузилась</p>'}
+</script>
+</body>
+</html>
