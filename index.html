@@ -206,7 +206,7 @@ footer a{color:#fff}
 .plist b{white-space:nowrap}
 .mbar{display:none}
 
-@media (max-width:1240px){nav.links{gap:14px;font-size:14px}nav.links a[href="#works"]{display:none}.st-long{display:none}header.top .wrap{gap:14px}}
+nav.links{gap:16px;font-size:14px}nav.links a[href="#works"],nav.links a[href="#photo"]{display:none}header.top .wrap{gap:14px}
 @media (max-width:1000px){
   .hero-grid{grid-template-columns:1fr;min-height:0}
   .hero-txt{padding:40px 0 34px}
@@ -467,7 +467,7 @@ document.addEventListener('click',e=>{if(e.target.closest('[data-max]')){maxModa
 
 const nowKrd=()=>{const [h,m]=new Date().toLocaleString('en-US',{timeZone:'Europe/Moscow',hour12:false,hour:'2-digit',minute:'2-digit'}).split(':').map(Number);return {h:h%24,m}};
 function status(){const {h,m}=nowKrd();const open=h>=OPEN&&h<CLOSE;const left=CLOSE*60-(h*60+m);$('#dot').classList.toggle('closed',!open);
-  $('#stText').innerHTML=open?(left<=60?`Открыто · до закрытия ${left} мин`:'Открыто<span class="st-long"> · до 19:00</span>'):'Закрыто<span class="st-long"> · откроемся в 10:00</span>'}
+  $('#stText').innerHTML=open?(left<=60?`Открыто<span class="st-long"> · до закрытия ${left} мин</span>`:'Открыто<span class="st-long"> · до 19:00</span>'):'Закрыто<span class="st-long"> · откроемся в 10:00</span>'}
 status();setInterval(status,60000);
 
 function playChat(){const ms=[...document.querySelectorAll('#chat .msg')];ms.forEach(m=>m.classList.remove('show'));ms.forEach((m,i)=>setTimeout(()=>m.classList.add('show'),400+i*1000))}
